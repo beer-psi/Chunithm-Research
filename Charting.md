@@ -7,7 +7,7 @@ This is a general documentation on the chart files used in the game. These files
 * The location for chart files can be found in ``root¥app¥data¥AXXX¥music¥musicXXXX``. The file format for charts is ``.c2s``, and are plain text files that can be opened in tools like Notepad++.
 * A cell is the corresponding key for the note on the playfield. The playfield has 16 columns, numbers from 0-15 from left to right.
 * A measure is a function of time containing a specific amount of beats. Each measure usually contains 4 beats, and stays relatively consistent throughout the song.
-* From my experience, Chunithm will usually ignore a note unless it is formatted in a very specific way. In an existing chart file, using tab instead of space to add modifiers to notes works, while using space doesn't. This is exclusive to Notepad++ in my experience.
+* From my experience, Chunithm will usually ignore a note unless it is formatted in a very specific way. ~~In an existing chart file, using tab instead of space to add modifiers to notes works, while using space doesn't. This is exclusive to Notepad++ in my experience.~~ The chart format separates columns with tabs.
 * Chunithm reloads ``.c2s`` files on selection. This means that it's possible to debug custom charts by simply reselecting the song that is being changed. To streamline this process, use a DANGER skill such as "今わの際" (skill ID 102005), and place ≈20 TAP notes a few measures after your custom notes. This way, you will automatically fail the track and be able to reselect the track much faster, rather than waiting for the song to finish.
 
 # Tags
