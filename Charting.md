@@ -44,8 +44,7 @@ Designates the default BPM.
 
 | 1 | 2 | 3 | 4 |
 | ---- | ---- | ---- | ---- |
-
-1 usually contains the true default BPM, or the BPM that the song starts with. 2 usually contains the alternative BPM, or the BPM that the song has the most often besides the BPM in 1. If there is no alternative BPM, then 2 mirrors 1. 3 and 4 seem to mirror 2 and 1 respectively.
+| Starting BPM | Mode | Highest BPM | Lowest BPM |
 
 ## RESOLUTION
 
@@ -112,10 +111,13 @@ A note type is the type of note that you want to be placed at this particular po
 #### Note Types:
 
 * TAP (tap)
-* CHR (ex-note)
+* CHR (extap)
 * HLD (hold)
+* HXD (hold with extap head)
 * SLD (slide)
 * SLC (slide control point)
+* SXD (slide with extap head)
+* SXC (slide control point with extap head)
 * FLK (flick)
 * AIR (air)
 * AUR (air up-right)
@@ -124,6 +126,7 @@ A note type is the type of note that you want to be placed at this particular po
 * ADW (air downwards)
 * ADR (air down-right)
 * ADL (air down-left)
+* ALD (air crush)
 * MNE (mine)
 
 ### Measure
@@ -173,16 +176,23 @@ Tap notes are the most basic notes that can be charted. They simply require the 
 
 Tap notes do not differ from the universal schema listed above.
 
-### Ex-Notes
+### ExTap
 
-Ex-Notes are similar to tap notes, although they give the player more score for hitting them accurately.
+ExTaps are the same as notes, though it will always be judged as a justice critical when hit.
 
 #### Schema:
 
-| "CHR" | Measure | Offset | Cell | Width | Unknown |
+| "CHR" | Measure | Offset | Cell | Width | Animation |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 
-* Unknown: Seems to always have a value of "UP", "CE", or "DW".
+* Animation: The animation played on the side when you hit an extap. Possible values are
+  * UP: Effects go vertically from bottom to top
+  * DW: Effects go vertically from top to bottom
+  * CE: Effects focus towards the playfield
+  * LS: Effects go horizontally from right to left
+  * RS: Effects go horizontally from left to right
+  * LC: Effects rotate counterclockwise
+  * RC: Effects rotate clockwise
 
 ### Hold
 
@@ -190,10 +200,14 @@ Hold notes are similar to tap notes, but require the player to keep the designat
 
 #### Schema: 
 
-| "CHR" | Measure | Offset | Cell | Width | Duration |
+| "HLD" | Measure | Offset | Cell | Width | Duration |
 | ---- | ---- | ---- | ---- | ---- | ---- |
 
+| "HXD" | Measure | Offset | Cell | Width | Duration | Animation |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
 * Duration: The amount of time that the note needs to be held down for. This value is based on the same format for offset.
+* Animation: Same as extap's animation.
 
 ### Slide
 
@@ -201,14 +215,19 @@ Slide notes are similar to hold notes, but are capable of moving between cells w
 
 #### Schema:
 
-| "SLD"/"SLC" | Measure | Offset | Cell | Width | Duration | End Cell | End Width |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| "SLD"/"SLC" | Measure | Offset | Cell | Width | Duration | End Cell | End Width | "SLD" |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
+| "SXD"/"SXC" | Measure | Offset | Cell | Width | Duration | End Cell | End Width | "SLD" | Animation |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * Duration: The amount of time that the note will take to move to the target cell. This value is based on the same format for offset.
 * End Cell: The column that the slide will move towards over the duration of the slide. Similar to the Cell value, this value will be where the left side of the cell is, and can be anywhere from 0-15. To have a slide that stays straight over the duration, make the End Cell value the same as the Cell value.
 * End Width: The width that the slide will have at the end of the duration. Similar to the Width value, this value can be anywhere between 1-16. If the End Width differs from the original Width, the slider will gradually shrink or expand in width over the course of the slide.
 
 A slide will not end until you call an SLD in the same cell that another slide is in at that moment in time, without having another slide follow afterwards. Having an SLD in the middle of a continuous slide will add an additional blue note at that specific point, which is purely cosmetic. To adjust a slide without adding another note, use SLC.
+
+An SLC placed outside of a slide will be treated as an SLD.
 
 The feature of sliders shaking from side to side rapidly is not a built-in function of the game, it instead simply involves having the slider move left and right a few cells on very short offsets.
 
@@ -229,20 +248,20 @@ An air note involves the player raising their hands through the IR sensors above
 
 #### Schema:
 
-| "AIR"/"AUR"/"AUL" | Measure | Offset | Cell | Width | Target Note |
-| ---- | ---- | ---- | ---- | ---- | ---- |
+| "AIR"/"AUR"/"AUL" | Measure | Offset | Cell | Width | Target Note | "DEF" |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * AIR/AUR/AUL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. AIR has an upwards arrow, AUR has an up-right arrow, and AUL has an up-left arrow.
 * Target Note: This value designated what note the Air note "leeches" off of. You should have this note be in the same cell, measure, and offset as the Air note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
 
-## Air Hold
+### Air Hold
 
 An air hold note involves having the player hold their hands up towards the sensor after performing an air note. Air holds will always end with a mid-air downwards note automatically.
 
 #### Schema:
 
-| "AHD" | Measure | Offset | Cell | Width | Target Note | Duration |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| "AHD" | Measure | Offset | Cell | Width | Target Note | Duration | "DEF" |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * Target Note: This value designated what note the Air note "leeches" off of. You should have this note be in the same cell, measure, and offset as the Air note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
 * Duration: The amount of time that the note will take to move to the target cell. This value is based on the same format for offset.
@@ -255,11 +274,30 @@ A downwards note involves the player lowering their hands through the IR sensors
 
 #### Schema:
 
-| "ADW"/"ADR"/"ADL" | Measure | Offset | Cell | Width | Target Note |
-| ---- | ---- | ---- | ---- | ---- | ---- |
+| "ADW"/"ADR"/"ADL" | Measure | Offset | Cell | Width | Target Note | "DEF" |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * ADW/ADR/ADL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. ADW has a downwards arrow, ADR has a down-right arrow, and ADL has a down-left arrow.
 * Target Note: This value designated what note the downwards note "leeches" off of. You should have this note be in the same cell, measure, and offset as the downwards note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
+
+### Air Trace/Air Crush
+
+#### Schema
+
+| "ALD" | Measure | Offset | Cell | Width | Unknown | Starting Height | Duration | End Cell | End Width | Target Height | Color
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
+* Unknown: 0 for air traces, depends for air crushes.
+* Duration: Same format as offset.
+* Height: Height of the air trace. Expects one decimal point i.e. `20.0`.
+* Color: Color of the air trace. Observed values are: GRY (gray), RED (red), ORN (orange), YEL (yellow), AQA (aqua), PPL (purple), PNK (pink), CYN (cyan), BLK (black), NON (none, for air crushes), DEF (default, also for air crushes)
+
+### Air Slide
+
+#### Schema
+
+| "ASD"/"ASC" | Measure | Offset | Cell | Width | Target Note | Starting Height | Duration | End Cell | End Width | Target Height | Color
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 ### Mines
 
@@ -351,7 +389,7 @@ SLD	8	348	12	4	36	12	4
 
 There are several important things to note here. For one, the SLCs at the top are within very quick succession of each other. As stated above, this is because it's creating a curved slider, so it's very precise to look smooth. There is also an SLD immediately after it, which has a duration of 236 resolution. This is important because you can see that this slider is supposed to end at the same time as the other slider. If you add together the offset, which is 148, and the duration, you'll get a value of 384. If you add together the offset and duration of the second SLD at the bottom, you also get 384. Since they are both on the same measure, this shows that they will end at the same time as each other. It's also worth mentioning that the second pair of SLCs are not related to the first pair. They start on a separate cell from the other slider, so it creates a new slider instead of extending a previous one.
 
-The final part of the excerpt contains several air notes, an air hold, an ex-note, and several tap notes. These appear in the file as:
+The final part of the excerpt contains several air notes, an air hold, an extap, and several tap notes. These appear in the file as:
 ```
 AHD	9	0	0	4	SLD	192
 CHR	9	0	4	8	CE
@@ -369,11 +407,11 @@ The AHD notes represents the following:
 
 The CHR note represents:
 
-``Ex-note | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | CE modifier``
+``extap | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | CE modifier``
 
 The AIR note represents:
 
-``Air note | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | leaches off of the ex-note that occupies the same cell``
+``Air note | on the 9th measure | with an offset of 0 | starts on the 4th cell | extends to the right by 8 cells | leaches off of the extap that occupies the same cell``
 
 The excerpt finally ends with two TAP notes, which mean the following:
 
