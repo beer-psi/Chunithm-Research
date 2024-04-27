@@ -290,7 +290,7 @@ A downwards note involves the player lowering their hands through the IR sensors
 * Unknown: 0 for air traces, depends for air crushes.
 * Duration: Same format as offset.
 * Height: Height of the air trace. Expects one decimal point i.e. `20.0`.
-* Color: Color of the air trace. Observed values are: GRY (gray), RED (red), ORN (orange), YEL (yellow), AQA (aqua), PPL (purple), PNK (pink), CYN (cyan), BLK (black), NON (none, for air crushes), DEF (default, also for air crushes)
+* Color: Color of the air trace. Observed values are: GRY (gray), RED (red), ORN (orange), YEL (yellow), AQA (aqua), PPL (purple), PNK (pink), CYN (cyan), BLK (black), YEL (yellow), VLT (violet), LIM (lime), BLU (blue), NON (none, for air crushes), DEF (default)
 
 ### Air Slide
 
