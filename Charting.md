@@ -14,7 +14,7 @@ This is a general documentation on the chart files used in the game. These files
 
 ## VERSION
 
-Usually set to 1.08.00. (denotes the version of the ``.c2s`` handler that the chart is designed for?)
+The version of the chart format. This document is valid for version `1.12.00` (introduced in LUMINOUS).
 
 ## MUSIC
 
