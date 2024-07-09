@@ -248,11 +248,12 @@ An air note involves the player raising their hands through the IR sensors above
 
 #### Schema:
 
-| "AIR"/"AUR"/"AUL" | Measure | Offset | Cell | Width | Target Note | "DEF" |
+| "AIR"/"AUR"/"AUL" | Measure | Offset | Cell | Width | Target Note | Color |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * AIR/AUR/AUL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. AIR has an upwards arrow, AUR has an up-right arrow, and AUL has an up-left arrow.
 * Target Note: This value designated what note the Air note "leeches" off of. You should have this note be in the same cell, measure, and offset as the Air note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
+* The color of the air arrow. Observed values are DEF (default green color) and PNK (pink).
 
 ### Air Hold
 
@@ -274,11 +275,12 @@ A downwards note involves the player lowering their hands through the IR sensors
 
 #### Schema:
 
-| "ADW"/"ADR"/"ADL" | Measure | Offset | Cell | Width | Target Note | "DEF" |
+| "ADW"/"ADR"/"ADL" | Measure | Offset | Cell | Width | Target Note | Color |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 * ADW/ADR/ADL: Each of these note types are identical functionality-wise, although affect the appearance of the arrow above the note. ADW has a downwards arrow, ADR has a down-right arrow, and ADL has a down-left arrow.
 * Target Note: This value designated what note the downwards note "leeches" off of. You should have this note be in the same cell, measure, and offset as the downwards note. It's also recommended to only use this note at the end of a note, rather than in the middle of a sustained note. This recommendation can be discarded for high-level charts.
+* The color of the air arrow. Observed values are DEF (default pink color) and GRN (green).
 
 ### Air Trace/Air Crush
 
