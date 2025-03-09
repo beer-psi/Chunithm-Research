@@ -97,6 +97,11 @@ Designates the speed of the playfield at the specified measure of the song.
 
 It is important to note that the multiplier must have an accuracy of 0.000001, meaning that it should have six digits after the decimal point. This value will multiply the player's current playfield speed, so notes will appear faster or slower based on this value. This value is purely cosmetic, and will not affect the placement of notes in the .c2s file, only the player will see a difference. This value can also be made negative, which will result in the board moving in reverse, usually used for aesthetic purposes such as [this section of Fracture Ray's MASTER chart](https://youtu.be/5m7bMyIDoec?t=48).
 
+## DCM
+
+| Beginning Measure | Offset | Duration | Multiplier |
+| ---- | ---- | ---- | ---- |
+
 # Notes
 
 ## Universal Note Schema
