@@ -14,7 +14,7 @@ This is a general documentation on the chart files used in the game. These files
 
 ## VERSION
 
-The version of the chart format. This document is valid for version `1.12.00` (introduced in LUMINOUS).
+The version of the chart format. This document is valid for version `1.13.00` (introduced in X-VERSE).
 
 ## MUSIC
 
@@ -99,8 +99,34 @@ It is important to note that the multiplier must have an accuracy of 0.000001, m
 
 ## DCM
 
+Designates the scroll speed for notes spawned at the specified measure of the song. 
+
+### Schema:
+
 | Beginning Measure | Offset | Duration | Multiplier |
 | ---- | ---- | ---- | ---- |
+
+The main difference from SFL is that:
+- negative values will make notes scroll in from behind the judgement line (see [卑怯戦隊うろたんだー WE](https://www.youtube.com/watch?v=Az8xEAvgvo0))
+- it only affects the speed of notes spawned in the `DCM`'s duration. For example:
+
+```
+DCM	6	112	1	1.200000
+
+FLK	6	112	7	3	L
+FLK	6	128	4	3	L
+```
+
+means that only the first [FLK](#flick) is affected by the modifier.
+
+## SLP
+
+Designates the speed of the playfield at the specified measure of the song. Seems to be able to control the scroll speed for specific notes through the use of the Unknown parameter, though it is unclear how this is linked back to the notes. See [単位がない！ MASTER](https://youtu.be/3YwrBFC8zxg?t=62) for an example of how SLP is used to pop in the kanji air traces instantly.
+
+### Schema:
+
+| Beginning Measure | Offset | Duration | Multiplier | Unknown |
+| ---- | ---- | ---- | ---- | ---- |
 
 # Notes
 
