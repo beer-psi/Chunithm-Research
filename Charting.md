@@ -121,7 +121,7 @@ means that only the first [FLK](#flick) is affected by the modifier.
 
 ## SLP
 
-Designates the speed of the playfield at the specified measure of the song. Seems to be able to control the scroll speed for specific notes through the use of the Unknown parameter, though it is unclear how this is linked back to the notes. See [単位がない！ MASTER](https://youtu.be/3YwrBFC8zxg?t=62) for an example of how SLP is used to pop in the kanji air traces instantly.
+Designates the speed of the playfield at the specified measure of the song. Seems to be able to control the scroll speed for specific notes through the use of the Unknown parameter (if Unknown is 0, then acts the same as SFL), though it is unclear how this is linked back to the notes. See [単位がない！ MASTER](https://youtu.be/3YwrBFC8zxg?t=62) for an example of how SLP is used to pop in the kanji air traces instantly.
 
 ### Schema:
 
