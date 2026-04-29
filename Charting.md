@@ -121,7 +121,9 @@ means that only the first [FLK](#flick) is affected by the modifier.
 
 ## SLP
 
-Designates the speed of the playfield at the specified measure of the song. Can take a non-zero `ID` value to apply soflan to only a specific section of the chart (see [SLA](#soflan-area) for how to create a section).
+Designates the speed of the playfield at the specified measure of the song.
+
+The ID can be `0`, in which case this acts like [SFL](#sfl), or a non-zero value which corresponds to a [soflan area](#soflan-area) assigned in the chart body.
 
 ### Schema:
 
