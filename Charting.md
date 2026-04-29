@@ -121,11 +121,11 @@ means that only the first [FLK](#flick) is affected by the modifier.
 
 ## SLP
 
-Designates the speed of the playfield at the specified measure of the song. Seems to be able to control the scroll speed for specific notes through the use of the Unknown parameter (if Unknown is 0, then acts the same as SFL), though it is unclear how this is linked back to the notes. See [単位がない！ MASTER](https://youtu.be/3YwrBFC8zxg?t=62) for an example of how SLP is used to pop in the kanji air traces instantly.
+Designates the speed of the playfield at the specified measure of the song. Can take a non-zero `ID` value to apply soflan to only a specific section of the chart (see [SLA](#soflan-area) for how to create a section).
 
 ### Schema:
 
-| Beginning Measure | Offset | Duration | Multiplier | Unknown |
+| Beginning Measure | Offset | Duration | Multiplier | ID |
 | ---- | ---- | ---- | ---- | ---- |
 
 # Notes
@@ -159,6 +159,7 @@ A note type is the type of note that you want to be placed at this particular po
 * ADL (air down-left)
 * ALD (air crush)
 * MNE (mine)
+* SLA (soflan area)
 
 ### Measure
 
@@ -340,6 +341,15 @@ A mine note involves the player not touching the cell that the mine is placed on
 | ---- | ---- | ---- | ---- | ---- |
 
 Mine notes require the same information as Tap notes, and simply follow the universal schema mentioned above.
+
+### Soflan Area
+
+Creates a new soflan area starting from cell `cell` and spanning `width` cells, lasting for `duration` ticks. Assign this area a non-zero `ID` which can be used to apply soflan to this specfic section of the chart (see [SLP](#slp) for how to do so).
+
+#### Schema
+
+| "SLA" | Measure | Offset | Cell | Width | Duration | ID |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
 # Notes Demonstration
 
