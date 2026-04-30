@@ -323,7 +323,7 @@ A downwards note involves the player lowering their hands through the IR sensors
 | "ALD" | Measure | Offset | Cell | Width | Crush Tick | Starting Height | Duration | End Cell | End Width | Target Height | Color
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 
-* Crush Tick: Interval between air crushes in ticks (e.g. if crush tick is 20 and the duration is 40 ticks, then there's 1 air crush at tick 20.)
+* Crush Tick: Interval between air crushes in ticks (e.g. if crush tick is 20 and the duration is 40 ticks, then there's 3 air crushes at tick 0, tick 20 and tick 40.)
 * Duration: Same format as offset.
 * Height: Height of the air trace. Expects one decimal point i.e. `20.0`.
 * Color: Color of the air trace. Observed values are: GRY (gray), RED (red), ORN (orange), YEL (yellow), AQA (aqua), PPL (purple), PNK (pink), CYN (cyan), BLK (black), YEL (yellow), VLT (violet), LIM (lime), BLU (blue), GRN (green), NON (none, for air crushes), DEF (default)
